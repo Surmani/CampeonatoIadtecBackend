@@ -1,0 +1,72 @@
+package com.iadtec.hackathon.shared.querycriteria;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Expression;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import br.com.iadtec.checklist.shared.BasicEntity;
+
+class CriteriaDateConverter implements CriteriaValueConverter<Date> {
+
+	private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-MM-yyyy");
+	
+	public Date getValue(String value) {
+		try {
+			return DATE_FORMAT.parse(value);
+		}
+		catch (ParseException e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Predicate buildCriteria(SearchCriteria criteria, Root<? extends BasicEntity> root, CriteriaBuilder builder) {
+		
+		String v = (String) criteria.getValue();
+		Date value = this.getValue(v);
+		if(value == null){
+			return buildDateParts(criteria, root, builder, v);
+		}
+		
+		return builder.equal(root.<Date>get(criteria.getKey()), value);
+	}
+
+	private Predicate buildDateParts(SearchCriteria criteria, Root<? extends BasicEntity> root, CriteriaBuilder builder, String v) {
+		int integerValue = getIntegerValue(v);
+		
+		Path<java.sql.Date> column = root.<java.sql.Date>get(criteria.getKey());
+		Expression<Integer> year = getFunction(builder, column, "year");
+		Expression<Integer> month = getFunction(builder, column, "month");
+		Expression<Integer> day = getFunction(builder, column, "day");
+		builder.equal(column, integerValue);
+		return builder.or(
+				builder.equal(year, integerValue),
+				builder.equal(month, integerValue),
+				builder.equal(day, integerValue)
+				);
+		
+	}
+
+	private Expression<Integer> getFunction(CriteriaBuilder builder, Path<java.sql.Date> column, String attr) {
+		return builder.function(attr, Integer.class, column);
+	}
+
+	private int getIntegerValue(String v) {
+		try{
+			return Integer.parseInt(v);
+		}
+		catch (NumberFormatException e) {
+			return 0;
+		}
+		
+	}
+
+	
+
+}

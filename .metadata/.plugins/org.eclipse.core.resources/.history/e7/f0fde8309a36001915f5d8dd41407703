@@ -1,0 +1,50 @@
+package com.iadtec.hackathon.shared.querycriteria;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
+public class CriteriaBuilder {
+	
+	private String criteriaValue;
+	private Class<?> type; 
+	
+	public CriteriaBuilder(String criteriaValue, Class<?> type ) {
+		this.criteriaValue = criteriaValue;
+		this.type = type;
+	}
+	
+	public List<String> build(){
+		List<Field> fields = Lists.newArrayList();
+		fields = this.getAllFields(fields, type);
+		
+		String[] valores = criteriaValue.split("\\s+");
+		ArrayList<String> criterios = Lists.newArrayList();
+		
+		for(String valor: valores)
+			for(Field f : fields)
+				if(!"serialVersionUID".equals(f.getName()) && isValidField(f))
+					criterios.add(String.format("%s:%s", f.getName(), valor));
+		
+		return criterios;
+	}
+	
+	private List<Field> getAllFields(List<Field> fields, Class<?> type) {
+	    fields.addAll(Arrays.asList(type.getDeclaredFields()));
+
+	    if (type.getSuperclass() != null) {
+	        getAllFields(fields, type.getSuperclass());
+	    }
+
+	    return fields;
+	}
+
+	private boolean isValidField(Field f) {
+		CriteriaMapType mapType = CriteriaMapType.fromType(f.getType());
+		return mapType != null;
+	}
+
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="PaisServiceTests" project="Hackathon" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.iadtec.hackathon.service.PaisServiceTests" time="0.512">
+    <testcase name="contextLoads" classname="com.iadtec.hackathon.service.PaisServiceTests" time="0.294"/>
+    <testcase name="createUser" classname="com.iadtec.hackathon.service.PaisServiceTests" time="0.218"/>
+  </testsuite>
+</testrun>

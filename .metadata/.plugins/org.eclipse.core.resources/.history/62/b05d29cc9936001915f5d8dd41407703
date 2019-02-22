@@ -1,0 +1,30 @@
+package com.example.hackathon.pais;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class PaisService {
+	
+	@Autowired
+    private JdbcTemplate jtm;
+
+    @Override
+    public List<Pais> findAll() {
+
+        String sql = "SELECT * FROM CITIES";
+
+        List<Pais> paises = jtm.query(sql, new BeanPropertyRowMapper(Pais.class));
+
+        return paises;
+    }
+
+    @Override
+    public Pais findById(Long id) {
+
+        String sql = "SELECT * FROM PAIS WHERE ID=?";
+
+        Pais pais = (Pais) jtm.queryForObject(sql, new Object[]{id},
+                new BeanPropertyRowMapper(Pais.class));
+
+        return pais;
+    }
+}

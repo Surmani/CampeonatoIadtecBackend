@@ -1,0 +1,26 @@
+1550836491246	Rename package 'com.example.hackathon.model'
+1550836500243	Move compilation unit
+1550836963721	Rename package 'br.com.iadtec.checklist.shared.querycriteria'
+1550836974329	Rename package 'com.example.hackathon.shared'
+1550836979492	Rename package 'com.example.hackathon.pais'
+1550836988523	Rename package 'com.example.hackathon'
+1550837148518	Delete elements
+1550838278289	Copy package
+1550838295649	Rename type 'Pais'
+1550838304331	Rename type 'PaisController'
+1550838312409	Rename type 'PaisService'
+1550839131328	Copy package
+1550839148573	Rename type 'Estado'
+1550839160323	Rename type 'EstadoController'
+1550839169129	Rename type 'EstadoService'
+1550839485749	Encapsulate field 'dataNascimento'
+1550839493016	Encapsulate field 'email'
+1550839498299	Encapsulate field 'situacao'
+1550839650828	Delete elements
+1550844947687	Delete element
+1550844965383	Delete elements
+1550845260531	Delete element
+1550846523381	Rename package 'com.iadtec.hackathon.pais'
+1550851754977	Encapsulate field 'pais'
+1550851860015	Delete element
+1550852401261	Copy compilation unit

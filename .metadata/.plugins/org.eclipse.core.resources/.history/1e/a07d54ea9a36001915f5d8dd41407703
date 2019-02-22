@@ -1,0 +1,19 @@
+package com.iadtec.hackathon.pais;
+
+
+public class PaisController {
+
+    private PaisService paisService;
+
+//    @RequestMapping("/paises")
+//    public List<Pais> findCities() {
+//        
+//        return paisService.findAll();
+//    }
+//
+//    @RequestMapping("/paises/{userId}")
+//    public Pais findPais(@PathVariable Long userId) {
+//        
+//        return paisService.findById(userId);
+//    }
+}

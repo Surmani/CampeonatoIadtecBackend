@@ -1,0 +1,5 @@
+
+msquid:S1854[";Remove this useless assignment to local variable "recurso".(Ì¨ÅÆúÿÿÿÿH¡RMAJORZ
+CODE_SMELL
+squid:UselessImportCheck"URemove this unused import 'br.com.iadtec.checklist.app.runnerdiff.RunnerDiffService'.(Ôõ¤µH¢RMINORZ
+CODE_SMELL

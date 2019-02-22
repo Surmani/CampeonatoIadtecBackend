@@ -1,0 +1,5 @@
+
+∏%squid:RedundantThrowsDeclarationCheck]"lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(Ù”Ì∞¸ˇˇˇˇHûRMINORZ
+CODE_SMELL
+Xsquid:S1168-"+Return an empty collection instead of null.(•πÔçHüRMAJORZ
+CODE_SMELL

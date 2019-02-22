@@ -1,0 +1,32 @@
+package com.iadtec.hackathon.cliente;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ClienteService {
+	
+	@Autowired
+    private JdbcTemplate jtm;
+
+    public List<Cliente> findAll() {
+
+    	String sql = "SELECT ESTADO.ID, ESTADO.NOME, ESTADO.UF, PAIS.NOME AS PAIS FROM ESTADO INNER JOIN PAIS ON PAIS.ID = ESTADO.PAIS";
+        List<Cliente> clientes = jtm.query(sql, new BeanPropertyRowMapper(Cliente.class));
+
+        return clientes;
+    }
+
+    public Cliente findById(Long id) {
+
+        String sql = "CLIENTE.ID, CLIENTE.NOME, CLIENTE.DATANASCIMENTO, CLIENTE.EMAIL, CLIENTE.SITUACAO, ESTADO.NOME AS ESTADO FROM CLIENTE INNER JOIN ESTADO ON CLIENTE.ESTADO = ESTADO.ID WHERE CLIENTE.ID=?";
+
+        Cliente cliente = (Cliente) jtm.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Cliente.class));
+
+        return cliente;
+    }
+}

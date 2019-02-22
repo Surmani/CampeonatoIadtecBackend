@@ -1,0 +1,48 @@
+package com.iadtec.hackathon.estado;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Service;
+
+import com.iadtec.hackathon.service.Pais;
+
+@Service
+public class EstadoService {
+	
+	public class EstadoRowMapper implements RowMapper {
+		public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+			Estado pais = new Estado();
+			pais.setNome(rs.getString("NOME"));
+			pais.setUF(rs.getString("UF"));
+			pais.setPais(rs.getString("PAIS"));
+			pais.setId(rs.getLong("ID"));
+			return pais;
+		}
+	}
+	
+	@Autowired
+    private JdbcTemplate jtm;
+
+    public List<Estado> findAll() {
+
+    	String sql = "SELECT * FROM ESTADO";
+        List<Estado> estados = jtm.query(sql, new BeanPropertyRowMapper(Estado.class));
+
+        return estados;
+    }
+
+    public Estado findById(Long id) {
+
+        String sql = "SELECT * FROM ESTADO WHERE ID=?";
+
+        Estado estado = (Estado) jtm.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Estado.class));
+
+        return estado;
+    }
+}

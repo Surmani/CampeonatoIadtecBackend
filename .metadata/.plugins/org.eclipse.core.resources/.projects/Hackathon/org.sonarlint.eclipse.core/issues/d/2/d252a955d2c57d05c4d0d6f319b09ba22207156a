@@ -1,0 +1,7 @@
+
+bsquid:S1068".Remove this unused "dataSource" private field.(β–Π8³¶«ª‘-H®RMAJORZ
+CODE_SMELL
+squid:S1488"\Immediately return this expression instead of assigning it to the temporary variable "pais".(εύ‹°ώÿÿÿÿH·RMINORZ
+CODE_SMELL
+squid:S1488"^Immediately return this expression instead of assigning it to the temporary variable "paises".(Μ¥†΅ώÿÿÿÿH¶RMINORZ
+CODE_SMELL

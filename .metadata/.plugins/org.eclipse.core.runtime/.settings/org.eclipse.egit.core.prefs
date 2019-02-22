@@ -1,0 +1,4 @@
+GitRepositoriesView.GitDirectories=/home/iadtec/git/checklist-backend/.git\:/home/iadtec/Documents/Hackathon/gs-spring-boot/.git\:
+GitRepositoriesView.GitDirectories.relative=/home/iadtec/git/checklist-backend/.git\:gs-spring-boot/.git\:
+core_autoIgnoreDerivedResources=false
+eclipse.preferences.version=1

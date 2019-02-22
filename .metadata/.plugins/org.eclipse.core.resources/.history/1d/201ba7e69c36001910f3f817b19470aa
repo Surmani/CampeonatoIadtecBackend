@@ -1,0 +1,30 @@
+package com.iadtec.hackathon.estado;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class PaisService {
+	
+	@Autowired
+    private JdbcTemplate jtm;
+
+    public List<Estado> findAll() {
+
+    	String sql = "SELECT * FROM CITIES";
+        List<Estado> paises = jtm.query(sql, new BeanPropertyRowMapper(Estado.class));
+
+        return paises;
+    }
+
+    public Estado findById(Long id) {
+
+        String sql = "SELECT * FROM PAIS WHERE ID=?";
+
+        Estado pais = (Estado) jtm.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Estado.class));
+
+        return pais;
+    }
+}

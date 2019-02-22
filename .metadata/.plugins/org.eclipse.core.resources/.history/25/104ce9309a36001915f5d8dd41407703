@@ -1,0 +1,37 @@
+package com.iadtec.hackathon.shared.querycriteria;
+
+import java.util.Date;
+import java.util.Map;
+
+import com.google.common.collect.Maps;
+
+enum CriteriaMapType {
+	
+	DATE(Date.class, new CriteriaDateConverter()),
+	STRING(String.class, new CriteriaStringConverter());
+	
+	
+	private Class<?> clazz;
+	private CriteriaValueConverter<?> converter;
+	
+	private CriteriaMapType(Class<?> clazz, CriteriaValueConverter<?> converter){
+		this.clazz = clazz;
+		this.converter = converter;
+	}
+	
+	
+	private static Map<Class<?>, CriteriaMapType> map = Maps.newHashMap();
+	static {
+		for(CriteriaMapType c: values())
+			map.put(c.clazz, c);
+	}
+	
+	public static CriteriaMapType fromType(Class<?> clazz){
+		return map.get(clazz);
+	}
+	
+	public CriteriaValueConverter<?> getConverter() {
+		return converter;
+	}
+
+}

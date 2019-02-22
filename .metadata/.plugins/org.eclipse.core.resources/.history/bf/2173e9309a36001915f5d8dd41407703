@@ -1,0 +1,13 @@
+package com.iadtec.hackathon.shared.querycriteria;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import br.com.iadtec.checklist.shared.BasicEntity;
+
+interface CriteriaValueConverter <T> {
+
+	Predicate buildCriteria(SearchCriteria criteria, Root<? extends BasicEntity> root, CriteriaBuilder builder);
+
+}

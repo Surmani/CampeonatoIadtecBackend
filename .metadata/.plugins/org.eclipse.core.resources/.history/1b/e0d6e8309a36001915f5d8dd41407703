@@ -1,0 +1,22 @@
+package com.iadtec.hackathon.shared.querycriteria;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
+import br.com.iadtec.checklist.shared.BasicEntity;
+
+class CriteriaStringConverter implements CriteriaValueConverter<String> {
+
+	@Override
+	public Predicate buildCriteria(
+			SearchCriteria criteria, 
+			Root<? extends BasicEntity> root, 
+			CriteriaBuilder builder) {
+		
+		String value = (String) criteria.getValue();
+		
+		return builder.like(root.<String>get(criteria.getKey()), "%" + value.trim()+ "%");
+	}
+
+}

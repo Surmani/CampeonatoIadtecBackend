@@ -1,0 +1,38 @@
+package com.iadtec.hackathon.pais;
+
+import java.util.List;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+public class PaisService {
+	
+	@Autowired
+    private JdbcTemplate jtm;
+	private DataSource dataSource;
+	
+    public List<Pais> findAll() {
+
+    	String sql = "SELECT * FROM PAIS";
+        List<Pais> paises = jtm.query(sql, new BeanPropertyRowMapper(Pais.class));
+
+        return paises;
+    }
+
+    public Pais findById(Long id) {
+
+        String sql = "SELECT * FROM PAIS WHERE ID=?";
+
+        Pais pais = (Pais) jtm.queryForObject(sql, new Object[]{id}, new BeanPropertyRowMapper(Pais.class));
+
+        return pais;
+    }
+    
+    public void insertPais() {
+    	
+    	jtm.update("INSERT INTO PAIS(NOME) VALUES('Bélgica')");
+    }
+}
